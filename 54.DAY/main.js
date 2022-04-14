@@ -46,8 +46,11 @@ allLinks.forEach(link => {
 
 //Creating new elements as node
 const div = document.createElement('div');
-console.dir( div );
-
+console.dir(div);
 
 //How do we insert elements into the DOM
+div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+div.className = ' alert alert-success';
 
+//prepending the div to the document
+document.body.prepend(div);
