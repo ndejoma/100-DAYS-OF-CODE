@@ -54,3 +54,60 @@ div.className = ' alert alert-success';
 
 //prepending the div to the document
 document.body.prepend(div);
+
+/***
+ * elem.insertAdjacentHTML
+ * beforebegin
+ * beforeend
+ * afterbeigin
+ * afterend
+ */
+linksList.insertAdjacentHTML(
+	'beforebegin',
+	'<p>I am before begin of the ul</p>'
+);
+linksList.insertAdjacentHTML('afterbegin', '<p>I am after begin of the ul</p>');
+
+linksList.insertAdjacentHTML(
+	'beforeend',
+	'<p>I am before begin  of the ul</p>'
+);
+
+linksList.insertAdjacentHTML('afterend', '<p>I am after the end of the ul</p>');
+
+/***
+ * Other shorter syntax are after, before, append and prepend, same as above
+ */
+
+/***
+ * Cloning nodes: element.cloneNode(true)
+ * Does a deep cloning of the given node with all its children
+ */
+
+const divCopy = div.cloneNode(true);
+//apend the element after
+div.after(divCopy);
+console.log(divCopy);
+
+//create a clone without children
+//the children are not copies, just the elemnent itself
+const div3 = div.cloneNode(false);
+divCopy.after(div3);
+
+//Document Fragment
+const fragment = new DocumentFragment();
+console.log(fragment); //#document-fragment
+console.dir(fragment);
+
+//remove a node from the documen
+div3.remove(); //remove a node from the document
+
+//create a text node
+const text = document.createElement('maina');
+
+text.append('dkdkkdkkdkdk');
+console.log(text);
+console.dir(text);
+
+//append it to the body
+document.body.prepend(text);
