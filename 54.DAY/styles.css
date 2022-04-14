@@ -1,10 +1,12 @@
+/** @format */
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 body {
-    padding: 2rem;
+	padding: 2rem;
 }
 /* html {
     font-size: 62.5%; //10px
@@ -83,20 +85,27 @@ select{
     display: inline-block;
 } */
 
-
 .order {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 60px;
 }
 
-.order[data-order-state="new"] {
-    color: green;
+.order[data-order-state='new'] {
+	color: green;
 }
-.order[data-order-state="pending"] {
-    color: yellow;
+.order[data-order-state='pending'] {
+	color: yellow;
 }
-.order[data-order-state="cancelled"] {
-    color: red;
+.order[data-order-state='cancelled'] {
+	color: red;
+}
+
+.alert {
+	padding: 15px;
+	border: 1px solid #d6e9c6;
+	border-radius: 4px;
+	color: #3c763d;
+	background-color: #dff0d8;
 }
