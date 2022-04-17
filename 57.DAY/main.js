@@ -1,60 +1,61 @@
 /**
- * The JavaScript DOM
+ * Elements sizing and scrolling
  *
  * @format
  */
+
+const divScroll = document.querySelector('#text');
+console.log(divScroll.offsetLeft); //32
+console.log(divScroll.offsetTop); //32
+
+console.dir(divScroll.offsetWidth); //390
+console.dir(divScroll.offsetHeight); //290
+
+//clientLeft and clientTop - the width of the border
+console.log(divScroll.clientTop); //25
+console.log(divScroll.clientLeft); //25
+console.log(divScroll.clientRight); //undefined
+console.log(divScroll.clientBottom); //undefined
+
 /***
- * Styles and Classes
+ * clientHeight and clientWidth
+ * They represent inside element borders content together with padding
  */
-const heading = document.querySelector('.heading');
-console.log(heading.className); //heading me
-//add a class of yellow
-heading.classList.add('yellow');
-console.log(heading.classList); //
 
-//elem.style
-document.body.style.display = 'none';
-//setTimeout
-setTimeout(() => {
-	document.body.style.display = '';
-}, 2000);
+console.log(divScroll.clientWidth); //325 (300 + 25)
+console.log(divScroll.clientHeight); //225 (200+25)
 
-//store the class
-const para = document.querySelector('#para');
-console.log(para);
-//set stylles using element .style
-para.style.textAlign = 'center';
-//addding styles to to the style
-para.setAttribute(
-	'style',
-	'color: dodgerblue; textAlign: center; fontSize:  24px'
-);
-para.style.cssText =
-	'color: dodgerblue; fontSize:  24rem; backgroundColor: pink';
-//using style.cssText
-console.dir(para);
+/***
+ * scrollHeight and scrollWidth
+ */
+console.log(divScroll.scrollWidth); //325
+console.log(divScroll.scrollHeight); //346
 
-const headingComp = getComputedStyle(heading);
-console.log(headingComp); //{...}
+/***
+ * scrollLeft and scrollHeight
+ */
 
-//select the main
-const main = document.querySelector('.main');
-console.log(main);
-//select the div
-const div = main.querySelector('div');
-//creeate the function to show notifications
-const showNotication = ({ top, right, message, className }) => {
-	div.style.cssText = `top: ${top}px; right: ${right}px;`;
-	div.classList.add(className);
-	div.classList.add('green');
-	div.innerText = message;
-};
+console.log(divScroll.scrollTop); //0 if the items insde are not scrolled
+console.log(divScroll.scrollTop); //0
 
-const items = {
-	top: 10,
-	right: 10,
-	message: 'Hello there, welcome!!!',
-	className: 'welcome'
-};
+/***
+ * Window and scrolling
+ * document.documentElement is the window width and height
+ */
 
-showNotication(items);
+const docEl = document.documentElement;
+console.log(docEl.clientWidth); //1366 if there is a scroobar the clientWdith is 1351 15 is off the scrollbar
+console.log(window.innerWidth); //1366 -> doesn't account the width of the scrollbar
+
+/***
+ * Getting the current scroll
+ *
+ */
+console.log(docEl.scrollTop); //0
+console.log( docEl.scrollLeft ); //0
+
+document.addEventListener( 'scroll', () => {
+	//commented oot for performance reasons
+	// console.log(window.pageXOffset);
+	// console.log(window.pageYOffset);
+})
