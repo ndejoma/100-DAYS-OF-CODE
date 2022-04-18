@@ -10,6 +10,7 @@ html {
 }
 body {
 	padding: 2rem;
+	padding-top: 10px;
 }
 #text {
 	box-sizing: content-box;
@@ -19,4 +20,31 @@ body {
 	/* overflow: auto; */
 	border: 25px salmon solid;
 	overflow: scroll;
+}
+
+#header {
+	width: 100%;
+	margin: 0 auto;
+	height: 80px;
+	position: relative;
+}
+
+.nav-links {
+	display: flex;
+	justify-content: space-around;
+	background-color: salmon;
+	padding: 1.5rem;
+	list-style-type: none;
+}
+
+.nav-links li a {
+	color: #fff;
+}
+
+.sticky {
+	position: sticky;
+}
+
+.nav-links.sticky {
+	background-color: ;
 }
