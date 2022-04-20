@@ -5,53 +5,33 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-html {
-	overflow-y: scroll;
-}
+
 body {
-	padding: 2rem;
-	padding-top: 10px;
-	height: 200vh;
-}
-#text {
-	box-sizing: content-box;
-	max-width: 100%;
-	height: 200px;
-	padding: 20px;
-	/* overflow: auto; */
-	border: 25px salmon solid;
-	overflow: scroll;
-	transition: all 0.3s;
-}
-
-#header {
 	width: 100%;
-	margin: 0 auto;
-	height: 80px;
-	position: relative;
-}
-
-.nav-links {
+	height: 100vh;
 	display: flex;
-	justify-content: space-around;
+	flex-direction: column;
 	background-color: salmon;
-	padding: 1.5rem;
-	list-style-type: none;
-}
-
-.nav-links li a {
 	color: #fff;
+	align-items: center;
+	justify-content: center;
 }
 
-.sticky {
-	position: sticky;
-}
-
-.nav-links.sticky {
-	background-color: ;
-}
-
-/* class of hidden */
-.hidden {
-	display: none;
+.btn {
+	font-size: 1rem;
+	margin-top: 30px;
+	display: inline-block;
+	outline: 0;
+	border: 1px solid hsl(210, 84%, 48%);
+	background: linear-gradient(
+		to top,
+		hsl(210, 84%, 48%),
+		hsla(210, 92%, 45%, 1)
+	);
+	color: #fff;
+	padding: 15px 30px;
+	border-radius: 8px;
+	cursor: pointer;
+	box-shadow: ;
+	font-weight: bolder;
 }
