@@ -22,7 +22,7 @@ body {
 	margin-top: 30px;
 	display: inline-block;
 	outline: 0;
-	border: 1px solid hsl(210, 84%, 48%);
+	border: none;
 	background: linear-gradient(
 		to top,
 		hsl(210, 84%, 48%),
@@ -34,4 +34,11 @@ body {
 	cursor: pointer;
 	box-shadow: ;
 	font-weight: bolder;
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+		0 4px 6px -4px rgb(0 0 0 / 0.1);
+	transition: all 0.3s;
+}
+.btn:hover {
+	background: linear-gradient(to top, #147ae1f5, #0770daf3);
+	transform: translateY(-2px);
 }
