@@ -1,50 +1,103 @@
 /**
- * Event delegation
+ * The event object
  *
  * @format
  */
+//evenets propgation and bubbling
+const nav = document.querySelector('#nav');
+const anchorTag = document.querySelector('a');
 
-/***
- The DOM level 2 specifies that an event flow has three phases
-  1. Capturing phase -> which provides an opportunity to intercept the event before it reaches its target
-  2. Target phase -> this where the actual target receives the event
-  3. Bubbling phase -> which provide an opportunity to intercept the event as is goes up to ancestors of the target element.
-  NB: Event bubbling and capturing will only happen if the element and all its ancestors have the same listener. eg click
-  NB: Modern browsers bubble the event to the Window object , the path is store in the event.path
+//run the hanlder on click of the anchor tag
+// anchorTag.addEventListener('click', event => {
+// 	event.stopPropagation(); //the event doesn't bubble
+// 	console.log(event.target);
+// });
+// //add an event handler to the click event on the nav
+// console.log(nav);
+
+// nav.addEventListener(
+// 	'click',
+// 	e => {
+// 		console.log(e);
+// 		//important is the path taken by the event as it bubbles
+// 		console.log(e.path); //[a, li, ul, nav#nav, body, html, document, Window]
+// 		//confirm is the event bubbles by logging to the console
+// 		console.log(e.bubbles); //true
+// 	},
+// 	{
+// 		capture: true
+// 	}
+// );
+
+/**8
+ * Bubbling and capturing in action
+ *We can capture the event in the capturing phase and run a handler on it by setting capture to be true
+ useCa
  */
 
-const nav = document.querySelector('nav');
+//select all elements on the page
+const allElements = document.querySelectorAll('*');
+console.log(allElements);
 
-//We could add an event listener to all nav links by loop over them
-// const allNavLinks = nav.querySelectorAll('li > a');
-// console.log(allNavLinks);
+//capturing and bubbling events
+for (let el of allElements) {
+	//the event with capture
+	el.addEventListener(
+		'click',
+		event => {
+			console.log(`Capturing: ${event.eventPhase}`); // Capturing: [object PointerEvent]
+		},
+		true
+	);
+	//the bubbling after the target phase
+	el.addEventListener('click', event => {
+		console.log(`Bubbling: ${event.eventPhase}`); // Bubbling: [object PointerEvent]
+	});
+}
 
-// //we can add event listener to all navLInks by looping over them
-// allNavLinks.forEach(navLink => {
-// 	navLink.addEventListener('click', e => {
-// 		//prevent default browser behavior when you click on a link
-// 		e.preventDefault();
-// 		console.log(e.target.closest('.nav-links'));
-// 	});
-// });
+/***
+ * Day 60: Events Propagation: Bubbling and Capturing
+A standard DOM element has three phases of events propagation
+ a. Capturing phase -> events goes down to the target element
+ b. Target phase -> The event reached the target element
+ c. Bubbling -> the event bubbles up from the element.
+ 
+		<nav id="nav" onclick="console.log('nav')">
+		<ul onclick="console.log('ul')">
+			<li onclick="console.log('li')">
+					<a href="#" onclick="console.log('a')">
+				  Link 1
+				</a>
+			</li>
+		</ul>
+	</nav>
 
-//We can refcator the above to use event delegation which is mote efficient than adding an event handler to the links
+1. Event Bubbling
+When an events happens on a target element, it first runs on the handlers on that element, then that element's parents,and all they way through its other ancestors. By default events will be handled at the target phase or bubbling phase.
 
-//In this case we will use the parent as the nav itself and attach an event handler to it
-nav.addEventListener('click', event => {
-	//prevent default browser behavior
-	event.preventDefault();
-	//clicked the code if it is the a tag that has been clicked
-	const targetEl = event.target;
-	//check if the target is the anchor tag and run the code inside
-	if (targetEl.classList.contains('nav-link')) {
-		//ge the id from the href attribute
-		const sectionId = targetEl.getAttribute('href');
+//In the above example a click on inner <a> first runs it onclick
+1. The handler on <a> is run first
+2. Then on the the <li>
+3. Then on the <ul>target phase
+4. Then on the <nav>
+5. The so upwards until the document object
 
-		//scroll to the section with given id a smooth scroll
-		const section = document.querySelector(sectionId);
+Almost all events bubble, you can check if an event bubbles in the event object passed to the handler.
+//select the nav and add a hanlder to handle the click
+document.querySelector('#nav').('click', (event) => {
+console.log(event.bubbles);//true
+})
 
-		//scroll to the given section with a smmoth animation transition
-		section.scrollIntoView({ behavior: 'smooth' });
-	}
-});
+
+2. Event Capturing
+It is rarely used in real code, but sometime it is very useful. In our example above, if we click on the <a>, the event will first moves from the document root to the target element. In this case the path will be document -> <html> -> <body> -> <nav> -> <ul> -> <li> -> <a>(target phase)
+To cacth an event on the capture phase we must set the hander capture to true
+//add an event listener to the <a> with capturing set to true
+document.querySelector('li > a').('click', (event) => {
+console.log(event.eventPhase);//1 Capturing = 1
+}, {capture: true})
+
+
+3. Event target phase
+The target element which received the event. In a handler event object, the event.target will always point to the element that received the event.
+ */
