@@ -3,7 +3,7 @@
  *
  * @format
  */
-//develope uutility function
+//develop uutility functions
 
 //Check if the length of the input is between max and min value
 const isBetween = (length, min, max) =>
