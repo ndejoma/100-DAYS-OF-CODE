@@ -87,3 +87,9 @@ signUpForm.addEventListener('submit', event => {
 		alert('All your data looks good 🎉 🎉 🎉 Hureee!!! ');
 	}
 });
+
+
+/***
+ * On day 65 && Day 66, I built a form validator in JavaScript. Use Regular expressions for email validation.
+Day 66 of #100Daysof
+ */
