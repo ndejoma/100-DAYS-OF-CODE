@@ -13,5 +13,8 @@
   "license": "MIT",
   "dependencies": {
     "semver": "^7.3.7"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.13"
   }
 }
