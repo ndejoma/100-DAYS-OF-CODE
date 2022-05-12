@@ -1,0 +1,21 @@
+{
+  "name": "package-managers",
+  "version": "1.0.0",
+  "description": "package management in JavaScript",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "Maina",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "2.29.3",
+    "semver": "^7.3.7"
+  },
+  "devDependencies": {
+    "postcss": "~8.4.0"
+  }
+}
