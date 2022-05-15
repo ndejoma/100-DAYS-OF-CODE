@@ -2,9 +2,10 @@
   "name": "package-managers",
   "version": "1.0.0",
   "description": "package management in JavaScript",
-  "main": "main.js",
+  "main": "./src/main.js",
   "scripts": {
-   "init": "tailwindcss init"
+   "init": "tailwindcss init",
+   "build:watch": "tailwindcss -i ./src/styles/main.css -o ./src/styles/output.css --watch"
   },
   "keywords": [
     "none"

@@ -1,75 +1,55 @@
 <!-- @format -->
 
-# **Scripts defined in your package.json file**
-The "scripts" property of your package.json file supports a number of built-in scripts and their preset life cycle events as well as any predefined scripts.
+## **`bin` directory in node_modules directory and the bin property in package.json**
 
-## **Pre and Post scripts**
-To create "pre" or "post" scripts for any scripts defined in the "scripts" section of the package.json, simply create another script with a matching name and add "pre" or "post" to the beginning of them.
-
-##  Running user defined scripts
-The command is run  as follows
+First install tailwindcss package locally in your project
 ```shell
- $ npm run <pre-userDefined>
- $ npm run <userDefined>
- $ npm run post-userDefined
+npm init -y 
+
+npm i tailwindcss --save-dev
 ```
 
-## `User`
-When npm is run as root, scripts are always run with the effective uid and gid of the working directory owner.
+### `bin directory`
+A lot of packages have one or more executable files that they'd like to install into the `PATH`.
 
-## Environment
-Package scripts run in an environment where many pieces of information are made available regarding the setup of npm and the current state of the process.
+The bin property is available in a package which provides executables. Tailwindcss package provides these two executables which are copied to the node_modules/.bin directory as `tailwind` and `tailwindcss` executables when you install `tailwindcss` package locally.
 
-- ### Path
-  If you depend on modules that define executable scripts, like test suites, then those executables will be added to the PATH for executing the scripts. So, if your package.json has this:
+```json
+  "bin": {
+    "tailwind": "lib/cli.js",
+    "tailwindcss": "lib/cli.js"
+  },
+```
+### `Executables`
+When in global mode, executables are linked into {prefix}/bin on Unix, or directly into {prefix} on Windows.
 
+When in local mode, executables are linked into `./node_modules/.bin` so that they can be made available to scripts run through npm.
 
-  Day 78: Scripts defined in your package.json file.
-The scripts property of your package.json file supports a number of built-in scripts and the preset life cycle events of those scripts as well as any user predefined scripts.
+## Executing packages binaries locally
+- **Using npm exec**
+Since the tailwindcss package was installed locally, we can execute the two binaries found in the node_modules/.bin folder
 
-Built-in scripts include:
-1. npm start
- $ npm start //If there is a server.js file in the root of your package, then npm will default the start command to 'node server.js', prestart and poststart will be run if available.
+   Creating a tailwind.config.js file in the root of current directory.
+   ```shell
+  npm exec tailwindcss init
+  ```
+- Another way would be to create custom scripts in the package.json file your project directory, and configure the scripts to be run by `npm run <script>` or `npm run-script <script>`
+
+Inside your package.json create the name of the init command you will run with npm run command
+```json
+ "scripts": {
+   "init": "tailwindcss init"
+  },
+```
+
+To run the init command, which initializes the tailwind.config.js file in your project directory
+
+```shell
+npm  run init
+```
  
- "start": "node server.js" //defults to this
 
-2. Other built-in scripts include:
-   npm stop, npm restart, npm test, npm install, npm prestart, 	    npm poststart, etc.
-   
-   
-Creating and running custom npm scripts:
-1. create  three file greet.js, postgreet.js and pregreet.js
+ NB: File(s) referenced in bin starts with `#!/usr/bin/env node`, otherwise the scripts are started without the node executable!.
 
-2. Inside the pregreet.js add the following line:
-   console.log('Hello there, I am run before greet')
+ The `shebang #!` is only understood by POSIX compliant system and not Windows, that's another reason you should never commit node_modules folder to source control. npm creates different executables in Windows and Unix-like Operating systems.
 
-3. Inside the greet.js add the following line:
-   console.log('Hello there, I am greet')
-
-4. Inside the postgreet.js 
-   console.log('Hello there, I run after greet')
-
-5. Lastly edit you package.json file generated using npm init
- and add the script greet, postgreet and pregreet:
-    "scripts": {
-    "pregreet": "node ./pregreet.js",
-    "greet": "node ./greet.js",
-    "postgreet": "node ./postgreet.js"
-  }
-    
-To run the custom script greet:
-  $ npm run-script greet
-   or
-  $ npm run greet
-  
-NB: You must have Node.js installed for the scripts to execute
-
-After running the above script you should see  in your terminal
-/**
-Hello there, I am run before greet
-
-Hello there, I am greet
-
-Hello there, I run after greet
-*/
- 
