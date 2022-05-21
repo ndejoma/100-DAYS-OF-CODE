@@ -6,7 +6,7 @@
   "author": "maina",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode development"
+    "build": "webpack"
   },
   "keywords": [],
   "devDependencies": {
