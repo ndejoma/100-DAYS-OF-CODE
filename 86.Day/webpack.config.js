@@ -4,9 +4,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	entry: './src/index.js',
+	entry: {
+		index: './src/index.js',
+		hello: './src/hello.js'
+	},
 	output: {
-		filename: 'numbers.js',
+		filename: '[name].bundle.js',
 		path: path.resolve(__dirname, 'dist'),
 		library: 'numbers'
 	},
@@ -19,13 +22,8 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: 'Development uisng webpack'
 		})
-	]
-	// externals: {
-	// 	lodash: {
-	// 		commonjs: 'lodash',
-	// 		commonjs2: 'lodash',
-	// 		amd: 'lodash',
-	// 		root: '_'
-	// 	}
-	// }
+	],
+	optimization: {
+		runtimeChunk: 'single'
+	}
 };
