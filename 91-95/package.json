@@ -1,0 +1,31 @@
+{
+  "name": "module-bundlers",
+  "version": "1.0.0",
+  "description": "module bundlers",
+  "private": true,
+  "author": "maina",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "start": "webpack serve --open",
+    "babel": "npx babel src --out-dir mee"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-transform-arrow-functions": "^7.17.12",
+    "@babel/plugin-transform-classes": "^7.17.12",
+    "@babel/preset-env": "^7.18.2",
+    "babel-loader": "^8.2.5",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  },
+  "dependencies": {
+    "core-js": "^3.22.7",
+    "regenerator-runtime": "^0.13.9"
+  }
+}
