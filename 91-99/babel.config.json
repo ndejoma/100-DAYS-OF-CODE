@@ -10,7 +10,7 @@
 				},
 				"targets": {
 					"edge": "87",
-					"firefox": "100",
+					"firefox": "20",
 					"chrome": "100",
 					"safari": "14"
 				}
